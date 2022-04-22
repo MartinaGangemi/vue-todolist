@@ -5,17 +5,20 @@ const app = new Vue({
 // Stampare all'interno di una lista, un item per ogni todo. Se la proprietà done è uguale a true, visualizzare il testo del todo sbarrato.
         newTask:"",
         index : 0,
-        tasksCompleted : [],
+        tasksCompleted :[
+
+            {
+                text:"cucinare",
+                done:true,
+            },
+        ],
        
         tasks:[
             {
                 text:"fare gli esercizi",
                 done:false,
             },
-            {
-                text:"cucinare",
-                done:true,
-            },
+            
             {
                 text:"pulire casa",
                 done:false,
@@ -47,6 +50,10 @@ const app = new Vue({
         done(index){
             if (this.tasks[index].done === false){
             this.tasks[index].done = true;  
+            this.tasksCompleted.push(this.tasks[index])
+            this.tasks.splice(index,1)
+                      
+
             } else if (this.tasks[index].done === true){
                 this.tasks[index].done = false;
             }
