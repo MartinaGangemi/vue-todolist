@@ -13,14 +13,14 @@
 
         <!-- add task -->
         <div>
-            <input type="text">
-            <button>Aggiungi</button>
+            <input type="text" v-model="newTask" @keyup.enter="addTask">
+            <button @click="addTask">Aggiungi</button>
         </div>
         <!-- task list -->
         <div>
             <ul>
-                <li v-for="task in tasks" :class= "task.done == 'false' ? 'barrato' :'' ">
-                    {{task.text}} <span @click="removeTask">x</span>
+                <li v-for="task in tasks" :class= "task.done == true ? 'barrato' :'' ">
+                    {{task.text}} <i class="fa-solid fa-xmark"  @click="removeTask" ></i>
         
                 </li>
             </ul>
