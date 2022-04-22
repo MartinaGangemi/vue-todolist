@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://kit.fontawesome.com/6ab09c9efe.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -18,8 +19,9 @@
         <!-- task list -->
         <div>
             <ul>
-                <li v-for="task in tasks" :class= "task.done == 'true' ? 'barrato' :'' ">
-                    {{task.text}}
+                <li v-for="task in tasks" :class= "task.done == 'false' ? 'barrato' :'' ">
+                    {{task.text}} <span @click="removeTask">x</span>
+        
                 </li>
             </ul>
         </div>

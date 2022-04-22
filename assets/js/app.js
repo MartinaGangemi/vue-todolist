@@ -18,7 +18,9 @@ const app = new Vue({
             
         ]
     },
-    method:{
-
+    methods:{
+        removeTask(index){
+            this.tasks.splice(index,1);
+}
     }
 })
