@@ -7,96 +7,105 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://kit.fontawesome.com/6ab09c9efe.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Montserrat+Alternates:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <div id="app">
-        <div class="main">
+        <div class="container">
 
             <!-- add task -->
             <header>
                 <div class="my-5 text-center">
-                    <img height="100"  src="https://hiringplatform.boolean.careers/images/logo.png" alt="">
+                    <h1>Things to do</h1>
                 </div>
-                <div class="row px-5">
-                    <div class="col-8">
-                        <input type="text" class="form-control border border-dark rounded-4" placeholder="Nuovo Todo" v-model="newTask" @keyup.enter="addTask">
+               
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="col-12 col-sm-8"  >
+                        <input type="text" class="form-control border-0 rounded-4 shadow-none mb-1" placeholder="Nuovo Todo" v-model="newTask" @keyup.enter="addTask">
                     </div>
-                    <div class="col-4">
-                        <button class="btn btn-light border border-dark rounded-4"  @click="addTask">Aggiungi</button>
+                    <div>
+                        <button class="btn shadow-none border-0 rounded-4"  @click="addTask">Aggiungi</button>
                     </div>
                 </div>
-                
-                
             </header>
             <!-- task list -->
             
-                        
-           
-            <div class="mt-5 bg-light p-5 rounded-4">
-                <ul>
-                    <li class="row fs-5 border-bottom p-2" v-for="(task, index) in tasks"  v-if="tasks.length > 0" >
-                        <div class="col-10" >
-                            {{task.text}}
-                        </div>
-                        <div class="col-2">
-                            <i class="fa-solid fa-xmark"  @click="removeTask(index)" ></i>
-                            <i class="fa-solid fa-check":class= "task.done == true ? '' :'' " @click="done(index)"></i>
-                        </div>
-                    </li>
-
-                </ul>
-                <!-- se non ci sono tasks -->
-                <p  v-if="tasks.length === 0">
-                    niente da fare c:
-                </p>
-            </div>
-
-            
-            <!-- task completate -->
-            <div class="mt-5 bg-light p-5 rounded-4" >
-                <h2>Done</h2>
-                <ul>
-                    <li class="row fs-5 border-bottom p-2" v-for="(done, index) in tasksCompleted" >
-                        <div class="col-10"  >
-                            {{done.text}}
-                        </div>
-                        <div class="col-2">
-                            <i class="fa-solid fa-reply" @click="move(index)"></i>
-                        </div>
-                    </li>
-                </ul>
-                <!-- se non ci sono task completate -->
-                <p  v-if="tasksCompleted.length === 0">
-                    nothing done :c
-                </p>
-            </div>
-
-        <!-- task eliminate -->
-        <div class="mt-5 bg-light p-5 rounded-4" >
-            <div class="row">
-                <div class="col-6">
-                    <h2>Trash</h2>
-                </div>
-                <div class="col-6">
-                    <p @click="deleteAll">svuota tutto</p>
-                </div>
-            </div>
-            <ul>
-                <li class="row fs-5 border-bottom p-2" v-for="(trash, index) in deleted"  >
-                    <div class="col-10"  >
-                        {{trash.text}}
+           <div class="row row-cols-1 row-cols-md-3 p-1">
+                <div class="col">
+                    <div class="mt-5 bg-light  p-3  box">
+                        <h2>To do</h2>
+                        <ul>
+                            <li class="d-flex justify-content-between fs-5 dotted p-2" v-for="(task, index) in tasks"  v-if="tasks.length > 0" >
+                                <div >
+                                <span class="text-dark">{{task.text}}</span> 
+                                </div>
+                                <div >
+                                    <i class="fa-solid fa-xmark"  @click="removeTask(index)" ></i>
+                                    <i class="fa-solid fa-check":class= "task.done == true ? '' :'' " @click="done(index)"></i>
+                                </div>
+                            </li>
+    
+                        </ul>
+                        <!-- se non ci sono tasks -->
+                        <h4 class="mt-5" v-if="tasks.length === 0">
+                            Nothing to do
+                        </h4>
                     </div>
-                    <div class="col-2">
-                        <i class="fa-solid fa-trash" @click="deleteForever" ></i>
+                </div>
+
+                
+                <!-- task completate -->
+              <div class="col">
+                <div class="mt-5 bg-light p-3  box" >
+                    <h2>Done</h2>
+                    <ul>
+                        <li class="d-flex justify-content-between fs-5  dotted p-2" v-for="(done, index) in tasksCompleted" >
+                            <div >
+                                <span class="text-dark">{{done.text}}</span>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-reply" @click="move(index)"></i>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- se non ci sono task completate -->
+                    <h4 class="mt-5" v-if="tasksCompleted.length === 0">
+                        Nothing done 
+                    </h4>
+                </div>
+              </div>
+
+                <!-- task eliminate -->
+                <div class="col">
+                    <div class="mt-5 bg-light p-3 box" >
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div >
+                                <h2>Trash</h2>
+                            </div>
+                            <div >
+                                <div @click="deleteAll" class="delete">svuota tutto</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="d-flex justify-content-between fs-5 dotted p-2" v-for="(trash, index) in deleted"  >
+                                <div  >
+                                    <span class="text-dark">{{trash.text}}</span>
+                                </div>
+                                <div >
+                                    <i class="fa-solid fa-trash" @click="deleteForever" ></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- trash vuota -->
+                        <h4 class="mt-5" v-if="deleted.length === 0">
+                            trash empty :c
+                        </h4>
                     </div>
-                </li>
-            </ul>
-            <!-- trash vuota -->
-            <p  v-if="deleted.length === 0">
-                trash empty :c
-            </p>
-        </div>
+                </div>
+            </div>  
             
         </div>
         
@@ -105,6 +114,8 @@
     <div>
 
     </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="./assets/js/app.js"></script>
