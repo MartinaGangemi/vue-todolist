@@ -32,7 +32,7 @@
             <!-- task list -->
             <div class="mt-5 bg-light p-5 rounded-4">
                 <ul>
-                    <li class="row fs-5 border-bottom p-2" v-for="task in tasks" :class= "task.done == true ? 'barrato' :'' " @click="done(index)">
+                    <li class="row fs-5 border-bottom p-2" v-for="(task, index) in tasks" :class= "task.done == true ? 'barrato' :'' " @click="done(index)" >
                         <div class="col-11">
                             {{task.text}}
                         </div>

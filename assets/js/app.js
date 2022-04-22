@@ -40,9 +40,19 @@ const app = new Vue({
                 this.newTask=""
                 }
             },
+
+
+// cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)
         done(index){
-        this.tasks[index].done = true;
-        console.log("prova");
-        }    
+            if (this.tasks[index].done === false){
+            this.tasks[index].done = true;  
+            } else if (this.tasks[index].done === true){
+                this.tasks[index].done = false;
+            }
+        
+        console.log("index")
+        },
+        
+        
     }
 })
