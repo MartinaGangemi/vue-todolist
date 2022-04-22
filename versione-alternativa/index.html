@@ -46,21 +46,13 @@
                     </li>
 
                 </ul>
+                <!-- se non ci sono tasks -->
                 <p  v-if="tasks.length === 0">
                     niente da fare c:
                 </p>
             </div>
 
             
-            <!-- se non ci sono tasks -->
-            
-           
-           
-            
-
-            
-            
-
             <!-- task completate -->
             <div class="mt-5 bg-light p-5 rounded-4" >
                 <h2>Done</h2>
@@ -70,11 +62,42 @@
                             {{done.text}}
                         </div>
                         <div class="col-2">
-                            
+                            <i class="fa-solid fa-reply" @click="move(index)"></i>
                         </div>
                     </li>
                 </ul>
+                <!-- se non ci sono task completate -->
+                <p  v-if="tasksCompleted.length === 0">
+                    nothing done :c
+                </p>
             </div>
+
+        <!-- task eliminate -->
+        <div class="mt-5 bg-light p-5 rounded-4" >
+            <div class="row">
+                <div class="col-6">
+                    <h2>Trash</h2>
+                </div>
+                <div class="col-6">
+                    <p @click="deleteAll">svuota tutto</p>
+                </div>
+            </div>
+            <ul>
+                <li class="row fs-5 border-bottom p-2" v-for="(trash, index) in deleted"  >
+                    <div class="col-10"  >
+                        {{trash.text}}
+                    </div>
+                    <div class="col-2">
+                        <i class="fa-solid fa-trash" @click="deleteForever" ></i>
+                    </div>
+                </li>
+            </ul>
+            <!-- trash vuota -->
+            <p  v-if="deleted.length === 0">
+                trash empty :c
+            </p>
+        </div>
+            
         </div>
         
     </div>

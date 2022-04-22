@@ -24,13 +24,17 @@ const app = new Vue({
                 done:false,
             }
             
-        ]
+        ],
+
+        deleted:[]
     },
     methods:{
 //         MILESTONE 2
 //  Visualizzare a fianco ad ogni item ha una "x": cliccando su di essa, il todo viene rimosso dalla lista.
         removeTask(index){
+            this.deleted.push(this.tasks[index])
             this.tasks.splice(index,1);
+            
         },
 
 
@@ -58,5 +62,19 @@ const app = new Vue({
                 this.tasks[index].done = false;
             }
         },
+
+        move(index){
+            this.tasksCompleted[index].done = false;  
+            this.tasks.push(this.tasksCompleted[index])
+            this.tasksCompleted.splice(index,1)
+        },
+
+        deleteForever(index){
+            this.deleted.splice(index,1);
+        },
+
+        deleteAll(){
+            this.deleted = []
+        }
     }
 })
