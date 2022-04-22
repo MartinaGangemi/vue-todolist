@@ -4,6 +4,7 @@ const app = new Vue({
 // MILESTONE 1
 // Stampare all'interno di una lista, un item per ogni todo. Se la proprietà done è uguale a true, visualizzare il testo del todo sbarrato.
         newTask:"",
+        index : 0,
        
         tasks:[
             {
@@ -37,10 +38,11 @@ const app = new Vue({
                 task = {text: this.newTask, done:false}
                 this.tasks.unshift(task),
                 this.newTask=""
-
-            }
-            
-        }
-
-        }
+                }
+            },
+        done(index){
+        this.tasks[index].done = true;
+        console.log("prova");
+        }    
+    }
 })
